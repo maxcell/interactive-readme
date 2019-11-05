@@ -1,0 +1,17 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  max-width: 80vw;
+}
+
+section {
+  font: 1.5rem 'Helvetica';
+  color: rgba(0, 0, 0, 0.1);
+}
+
+section#active {
+  color: rgba(0, 0, 0, 1);
+}
