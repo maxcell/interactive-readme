@@ -12,12 +12,13 @@ section {
   font: 1.125rem 'Helvetica';
 }
 
-section.read {
-  color: rgba(0, 0, 0, 1);
+section:not(.read) {
+  opacity: 0;
 }
 
-section:not(.read) {
-  color: rgba(0, 0, 0, 0.1);
+section.read {
+  animation-name: fadeIn;
+  animation-duration: 150ms;
 }
 
 button.next {
@@ -25,4 +26,13 @@ button.next {
   height: 25px;
   color: white;
   background-color: green;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
