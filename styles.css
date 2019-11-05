@@ -5,10 +5,11 @@ html, body {
 
 main {
   max-width: 80vw;
+  margin: 20px;
 }
 
 section {
-  font: 1.5rem 'Helvetica';
+  font: 1.125rem 'Helvetica';
 }
 
 section.read {
