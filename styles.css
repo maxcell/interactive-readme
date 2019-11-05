@@ -9,9 +9,19 @@ main {
 
 section {
   font: 1.5rem 'Helvetica';
+}
+
+section.read {
+  color: rgba(0, 0, 0, 1);
+}
+
+section:not(.read) {
   color: rgba(0, 0, 0, 0.1);
 }
 
-section#active {
-  color: rgba(0, 0, 0, 1);
+button.next {
+  width: 75px;
+  height: 25px;
+  color: white;
+  background-color: green;
 }

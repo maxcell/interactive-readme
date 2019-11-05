@@ -11,10 +11,7 @@ document.addEventListener('DOMContentLoaded', function(event){
 function createButton(){ 
   let button = document.createElement('button')
   button.innerText = 'Next'
-  button.style.width = '75px'
-  button.style.height = '25px'
-  button.style.backgroundColor = 'green'
-  button.style.color = 'white'
+  button.classList.add('next')
 
   return button
 }
@@ -35,8 +32,7 @@ function globalNavigationListener(event) {
 function navigateNext(currentSection) {
   const nextSection = currentSection.nextElementSibling
   if(!!nextSection && nextSection.tagName === 'SECTION') {
-    nextSection.id = 'active'
-    currentSection.id = ''
+    nextSection.classList.add('read')
 
     let newButton = createButton()
     nextSection.appendChild(newButton)
