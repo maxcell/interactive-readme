@@ -3,9 +3,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
   document.querySelector('main').addEventListener('click', globalNavigationListener)
 
   // Initialize button
-  const button = createButton()
   let startSection = document.querySelector('section')
-  startSection.appendChild(button)
+  createInteraction(startSection)
 })
 
 function createButton() {
@@ -20,9 +19,10 @@ function createSubmission(section) {
   section.insertAdjacentHTML('beforeend',
     `<form class="interaction">
         <input type="text">
-        <button type="submit">Submit</button>
+        <button class="submit" type="submit">Submit</button>
    </form>`)
-  let newForm = section.querySelector('form');
+  let newInput = section.querySelector('input');
+  newInput.focus()
 }
 
 function createInteraction(section) {
@@ -31,6 +31,7 @@ function createInteraction(section) {
   } else {
     let newButton = createButton()
     section.appendChild(newButton)
+    newButton.focus()
   }
 }
 
@@ -45,10 +46,12 @@ function globalNavigationListener(event) {
       nextButton.remove()
       navigateNext(currentSection)
     }
-  } else if (event.type === 'submit') {
+  } else if (Array.from(event.target.classList).includes('submit')) {
     const form = document.querySelector('.interaction');
     const currentSection = form.parentNode
-    if (currentSection.tagName === 'SECTION') {
+    let answer = currentSection.dataset['answer']
+    let submission = form.children[0].value;
+    if (submission === answer) {
       form.remove()
       navigateNext(currentSection)
     }
@@ -58,6 +61,7 @@ function globalNavigationListener(event) {
 function navigateNext(currentSection) {
   const nextSection = currentSection.nextElementSibling
   if (!!nextSection && nextSection.tagName === 'SECTION') {
+    debugger
     nextSection.classList.add('read')
     createInteraction(nextSection)
   }
