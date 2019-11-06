@@ -61,8 +61,8 @@ function globalNavigationListener(event) {
 function navigateNext(currentSection) {
   const nextSection = currentSection.nextElementSibling
   if (!!nextSection && nextSection.tagName === 'SECTION') {
-    debugger
     nextSection.classList.add('read')
     createInteraction(nextSection)
+
   }
 }
