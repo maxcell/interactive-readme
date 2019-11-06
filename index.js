@@ -1,14 +1,14 @@
-document.addEventListener('DOMContentLoaded', function(event){
+document.addEventListener('DOMContentLoaded', function (event) {
   // Global Navigation
   document.querySelector('main').addEventListener('click', globalNavigationListener)
-  
+
   // Initialize button
   const button = createButton()
   let startSection = document.querySelector('section')
   startSection.appendChild(button)
 })
 
-function createButton(){ 
+function createButton() {
   let button = document.createElement('button')
   button.innerText = 'Next'
   button.classList.add('next')
@@ -19,10 +19,10 @@ function createButton(){
 function globalNavigationListener(event) {
   // Navigating Forward
 
-  if(event.target.innerText === 'Next') {
+  if (event.target.innerText === 'Next') {
     const nextButton = event.target
     const currentSection = nextButton.parentNode
-    if(currentSection.tagName === 'SECTION'){
+    if (currentSection.tagName === 'SECTION') {
       nextButton.remove()
       navigateNext(currentSection)
     }
@@ -31,7 +31,7 @@ function globalNavigationListener(event) {
 
 function navigateNext(currentSection) {
   const nextSection = currentSection.nextElementSibling
-  if(!!nextSection && nextSection.tagName === 'SECTION') {
+  if (!!nextSection && nextSection.tagName === 'SECTION') {
     nextSection.classList.add('read')
 
     let newButton = createButton()
