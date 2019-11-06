@@ -16,14 +16,40 @@ function createButton() {
   return button
 }
 
+function createSubmission(section) {
+  section.insertAdjacentHTML('beforeend',
+    `<form class="interaction">
+        <input type="text">
+        <button type="submit">Submit</button>
+   </form>`)
+  let newForm = section.querySelector('form');
+}
+
+function createInteraction(section) {
+  if (Array.from(section.classList).includes('interactive-text')) {
+    createSubmission(section)
+  } else {
+    let newButton = createButton()
+    section.appendChild(newButton)
+  }
+}
+
 function globalNavigationListener(event) {
   // Navigating Forward
+  event.preventDefault();
 
   if (event.target.innerText === 'Next') {
     const nextButton = event.target
     const currentSection = nextButton.parentNode
     if (currentSection.tagName === 'SECTION') {
       nextButton.remove()
+      navigateNext(currentSection)
+    }
+  } else if (event.type === 'submit') {
+    const form = document.querySelector('.interaction');
+    const currentSection = form.parentNode
+    if (currentSection.tagName === 'SECTION') {
+      form.remove()
       navigateNext(currentSection)
     }
   }
@@ -33,8 +59,6 @@ function navigateNext(currentSection) {
   const nextSection = currentSection.nextElementSibling
   if (!!nextSection && nextSection.tagName === 'SECTION') {
     nextSection.classList.add('read')
-
-    let newButton = createButton()
-    nextSection.appendChild(newButton)
+    createInteraction(nextSection)
   }
 }
